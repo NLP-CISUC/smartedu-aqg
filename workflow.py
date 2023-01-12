@@ -15,6 +15,8 @@ from loggerLog import *
 
 
 def allSteps(text, answerOption, questionOption, distractorOption, maxNumberQuestions):
+    distractorsPenalty = 0.5
+    nDistractors = 5
     completeOutput = []
 
     # COREFERENCE RESOLUTION
@@ -59,15 +61,13 @@ def allSteps(text, answerOption, questionOption, distractorOption, maxNumberQues
             output = generatorTransformer.getQuestions(output, 2)
     except Exception as e:
         logger.error("Exception while performing question generation: %s", e)
-
+    
     # before selecting distractors, we want to remain with only one question per sentence
     try:
         output = questionSentence(output)
     except Exception as e:
         logger.error("Exception in function questionSentence in allSteps (workflow.py): %s", e)
-
-    distractorsPenalty = 0.5
-    nDistractors = 5
+    
     # DISTRACTOR GENERATION
     try:
         logger.info("Performing distractor selection")
@@ -121,6 +121,9 @@ def outputAPI(originalOutput):
             for key in distractorKeys:
                 if key in answer.keys():
                     dic["answers"]["wrong_answers"] += answer[key]
+            # keep only unique distractors (the same distractor could have been obtained by multiple methods)
+            dic["answers"]["wrong_answers"] = (list(set(dic["answers"]["wrong_answers"])))
+
             # SORT DISTRACTORS
             dic["answers"]["wrong_answers"] = list(sortDistractorsGPT2(dic["question"], dic["answers"]["wrong_answers"]).keys())
             newOutput.append(dic)

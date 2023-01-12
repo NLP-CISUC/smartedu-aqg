@@ -64,7 +64,7 @@ def spacySimilarity(question, answer, distractor):
     return distractorQuestionSimilarity, distractorAnswerSimilarity, mean
     
 
-""" Returns dictionary with all distractors sorted by their BERT score (ascendent order, as scores are
+""" Returns dictionary with all distractors sorted by their BERT score (ascendant order, as scores are
 loss values, and so smaller values are preferable). """
 def sortDistractorsBERT(question, distractors):
     scores = {}
@@ -76,9 +76,8 @@ def sortDistractorsBERT(question, distractors):
     scores = {k: v for k, v in sorted(scores.items(), key=lambda item: item[1])}
     return scores
 
-
-""" Returns dictionary with all distractors sorted by their spaCy similarity (descendent order, as higher
-values represent more similar strings). """
+""" Returns dictionary with all distractors sorted by their GPT2 score (ascendant order, as scores are
+loss values, and so smaller values are preferable). """
 def sortDistractorsGPT2(question, distractors):
     scores = {}
     for distractor in distractors:
@@ -90,8 +89,8 @@ def sortDistractorsGPT2(question, distractors):
     return scores
 
 
-""" Returns dictionary with all distractors sorted by their GPT2 score (ascendent order, as scores are
-loss values, and so smaller values are preferable). """
+""" Returns dictionary with all distractors sorted by their spaCy similarity (descendant order, as higher
+values represent more similar strings). """
 def sortDistractorsSpacy(question, answer, distractors):
     scores = {}
     for distractor in distractors:
