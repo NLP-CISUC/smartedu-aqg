@@ -2,7 +2,7 @@ import json
 from transformers import file_utils                             #to find where the models are saved locally
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer   #to use the model
 
-import question_generation.pipelines as QGPipelines
+import question_generation.pipelines as QGPipelines #adapted from https://github.com/patil-suraj/question_generation
 nlpQuestion = QGPipelines.pipeline("question-generationQuestion")
 
 #https://huggingface.co/mrm8488/t5-base-finetuned-question-generation-ap    
