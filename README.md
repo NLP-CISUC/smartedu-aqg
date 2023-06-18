@@ -2,7 +2,18 @@
 
 Automatic Question Generation of Multiple Choice Questions
 
-## Installing dependencies
+## Update (June 2023)
+
+Code for generating Portuguese distractors of different types, from different resources, for two different datasets, and raking them with language models:
+[https://github.com/NLP-CISUC/smartedu-aqg/blob/main/Generating_Ranking_Distractors_PT.ipynb]
+
+Described in the paper:
+Hugo Gonçalo Oliveira, Igor Caetano, Renato Matos, Hugo Amaro. _Generating and Ranking Distractors for Multiple Choice Questions in Portuguese_.
+Proceedings of SLATE 2023.
+
+## Old:
+
+### Installing dependencies
 
 To install dependencies run
 ```bash
